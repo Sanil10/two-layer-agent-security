@@ -1,0 +1,31 @@
+# Layer 1 Declarative Security Policies: Slack (Held-Out Generalization Environment)
+environment: slack
+version: "1.0.0"
+
+tools:
+  read_channel:
+    action: allow
+    marks_tainted: true
+
+  search_messages:
+    action: allow
+    marks_tainted: true
+
+  post_message:
+    action: conditional
+    rules:
+      - check: channel_whitelist
+        allowed_channels:
+          - "#general"
+          - "#team-updates"
+          - "#project-standup"
+        on_violation: block
+        error_message: "Target Slack channel is not in authorized workspace list."
+
+      - check: no_external_url_exfiltration
+        disallow_patterns:
+          - "http://"
+          - "https://"
+          - "ftp://"
+        on_violation: block
+        error_message: "External URL detected in outbound message body."

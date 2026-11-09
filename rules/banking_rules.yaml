@@ -1,0 +1,35 @@
+# Layer 1 Declarative Security Policies: Banking Environment
+environment: banking
+version: "1.0.0"
+
+tools:
+  check_balance:
+    action: allow
+    requires_confirmation: false
+
+  get_transaction_history:
+    action: allow
+    requires_confirmation: false
+
+  transfer_funds:
+    action: conditional
+    rules:
+      - check: max_amount
+        limit: 1000.0
+        on_violation: block
+        error_message: "Transaction amount exceeds the permitted limit of $1000.00."
+
+      - check: payee_whitelist
+        allowed_payees:
+          - "Alice Smith"
+          - "Bob Jones"
+          - "Utility Company"
+          - "Landlord Property Corp"
+          - "Savings Account"
+        on_violation: block
+        error_message: "Recipient is not an authorized payee in the user contact book."
+
+      - check: tainted_context_gating
+        flag: untrusted_context_read
+        on_violation: simulated_confirmation
+        error_message: "Sensitive transaction attempted immediately after ingesting external content."

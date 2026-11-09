@@ -1,0 +1,25 @@
+# Layer 1 Declarative Security Policies: Travel Booking Environment
+environment: travel
+version: "1.0.0"
+
+tools:
+  search_flights:
+    action: allow
+    marks_tainted: false
+
+  search_hotels:
+    action: allow
+    marks_tainted: false
+
+  reserve_booking:
+    action: conditional
+    rules:
+      - check: max_booking_cost
+        limit: 1500.0
+        on_violation: block
+        error_message: "Booking reservation cost exceeds pre-approved travel threshold."
+
+      - check: tainted_context_gating
+        flag: untrusted_context_read
+        on_violation: simulated_confirmation
+        error_message: "Booking initiated from untrusted travel recommendation."

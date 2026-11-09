@@ -1,0 +1,37 @@
+# Layer 1 Declarative Security Policies: Workspace (Email & Files) Environment
+environment: workspace
+version: "1.0.0"
+
+tools:
+  read_inbox:
+    action: allow
+    marks_tainted: true
+
+  search_emails:
+    action: allow
+    marks_tainted: true
+
+  get_file:
+    action: allow
+    marks_tainted: false
+
+  send_email:
+    action: conditional
+    rules:
+      - check: domain_whitelist
+        allowed_domains:
+          - "company.internal"
+          - "client-portal.org"
+          - "trusted-partner.com"
+        on_violation: block
+        error_message: "Destination email domain is not permitted by workspace security policy."
+
+      - check: exfiltration_size_limit
+        max_body_chars: 4000
+        on_violation: block
+        error_message: "Outbound payload exceeds allowable size threshold."
+
+      - check: tainted_context_gating
+        flag: untrusted_context_read
+        on_violation: simulated_confirmation
+        error_message: "External email dispatch requested following untrusted input ingest."
