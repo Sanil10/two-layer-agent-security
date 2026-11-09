@@ -125,7 +125,7 @@ flowchart TD
 ### 1. System Requirements
 * Python `3.11` or higher
 * Standard development environment (No GPU acceleration required; all models are edge-compatible)
-* Operating Systems: Windows 10/11, macOS, or Linux
+* Operating Systems: Windows 10/11, macOS or Linux
 
 ### 2. Environment Setup
 
@@ -152,15 +152,15 @@ Set your OpenAI API key as an environment variable (never commit keys to git):
 
 ```bash
 # On Windows (PowerShell):
-$env:OPENAI_API_KEY="sk-..."
+$env:OPENAI_API_KEY="***********"
 
 # On Linux/macOS:
-export OPENAI_API_KEY="sk-..."
+export OPENAI_API_KEY="***********"
 ```
 
 ---
 
-## 🚀 Quickstart & Reproduction Guide
+## 🚀 Quickstart Guide
 
 ### Step 1: Verify Testbed & Baseline
 Run an undefended audit run on AgentDojo to verify environment execution:
@@ -201,17 +201,6 @@ This research maps directly to the following **Cyber Security Body of Knowledge 
 ## 📜 Ethical Compliance & Safety
 
 All experiments in this repository are executed strictly within simulated, virtualized sandbox environments provided by **AgentDojo v1.2.2**. No real financial accounts, actual email accounts, live telecommunication networks, or human subjects are involved. Confirmation interactions are deterministically modeled as safe refusals to establish rigorous lower-bound utility without subjective human bias.
-
----
-
-## 📚 References & Academic Citations
-
-1. **Debenedetti, E. et al. (2024)** 'AgentDojo: A dynamic environment to evaluate prompt injection attacks and defenses for LLM agents', *NeurIPS 2024*.
-2. **Greshake, K. et al. (2023)** 'Not what you’ve signed up for: Compromising real-world LLM-integrated applications with indirect prompt injection', *ACM AISec 2023*.
-3. **Liu, F.T., Ting, K.M. and Zhou, Z.-H. (2008)** 'Isolation forest', *IEEE ICDM 2008*.
-4. **Lundberg, S.M. and Lee, S.-I. (2017)** 'A unified approach to interpreting model predictions', *NeurIPS 2017*.
-5. **Shi, T. et al. (2026)** 'Progent: Securing AI agents with privilege control', *arXiv:2504.11703*.
-6. **Wang, H., Poskitt, C.M. and Sun, J. (2026)** 'AgentSpec: Customizable runtime enforcement for safe and reliable LLM agents', *ICSE 2026*.
 
 ---
 
