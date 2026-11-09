@@ -2,7 +2,6 @@
 Script 03: Full 5-Configuration Defense Ablation & Baseline Evaluation.
 Compares: Undefended, AgentDojo tool_filter, n-gram baseline, Layer 1 alone, Layer 2 alone, and Proposed Two-Layer.
 """
-
 import sys
 import os
 import time
@@ -11,10 +10,10 @@ import time
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 def main():
-    print("=========================================================================================")
+    print("==========================================================================================")
     print(" Two-Layer Agentic AI Security: Live Defense Ablation Study (AgentDojo Benchmark)")
     print(" Model: gpt-4o-mini-2024-07-18 | Total Evaluated Runs: 1,046 per configuration")
-    print("=========================================================================================\n")
+    print("==========================================================================================\n")
 
     print("Running evaluation across all 5 configurations...")
     time.sleep(1.0)
